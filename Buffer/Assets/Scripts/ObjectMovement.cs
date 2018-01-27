@@ -16,7 +16,7 @@ public class ObjectMovement : MonoBehaviour {
 	void Update () {
         transform.position += Vector3.left * Time.deltaTime*speed;
         currentXPos = this.transform.position.x;
-        CheckY();
+        //CheckY();
     }
     //Destroys The object onces it pasts out of the game
     public void CheckY()
@@ -27,7 +27,8 @@ public class ObjectMovement : MonoBehaviour {
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        Debug.Log(collision.gameObject.name);
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Slider")
             Destroy(gameObject);
     }
 }
