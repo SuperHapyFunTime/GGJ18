@@ -5,9 +5,10 @@ using UnityEngine;
 public class SliderMovement : MonoBehaviour {
     float[] sliderPositionX = { -15.7f, -10f, -5f };
     public int arrayCount = 0;
-    float sliderSpeed = 2f;
+    float sliderSpeed = 5f;
     bool sliderUpdatePosition = false;
-    public bool resetSliderPosition = false;
+    bool resetSliderPosition = false;
+    public RageMeter rageMeter;
     // Use this for initialization
     void Start()
     {
@@ -32,15 +33,17 @@ public class SliderMovement : MonoBehaviour {
     }
     public void UpdateSliderPosition()
     {
+        if (arrayCount == 2)
+            return;
         arrayCount++;
         sliderUpdatePosition = true;
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("test");
         if (collision.gameObject.tag == "Player")
         {
+            rageMeter.DealRage(0.4f);
             arrayCount = 0;
             resetSliderPosition = true;
         }
