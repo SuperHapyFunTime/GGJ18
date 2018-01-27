@@ -46,11 +46,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\MultiDisplay.cs" />
      <Compile Include="Assets\Scripts\AnimateSpritesSimply.cs" />
-     <Compile Include="Assets\Scripts\GridBasedMovement2Player.cs" />
      <Compile Include="Assets\Scripts\MultiDisplay.cs" />
+     <Compile Include="Assets\Scripts\ObjectMovement.cs" />
      <Compile Include="Assets\Scripts\PlayVid.cs" />
+     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\ShakeManager.cs" />
      <Compile Include="Assets\Scripts\Shaker.cs" />
      <Compile Include="Assets\Scripts\SineMover.cs" />
