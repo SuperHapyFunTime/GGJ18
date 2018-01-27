@@ -11,8 +11,15 @@ public class PlayerMovement : MonoBehaviour {
     Vector3 maxRightPos;
 	Transform tr;
 
-	// Use this for initialization
-	void Start () 
+    bool pausePlayer = false;
+    float timer = 0f;
+    float playerStopTime = 0.5f;
+
+    public SliderMovement sliderMovement;
+    
+
+    // Use this for initialization
+    void Start () 
 	{
         maxLeftPos = new Vector3(0, -5, 0);
         maxRightPos = new Vector3(0, 5, 0);
@@ -21,11 +28,19 @@ public class PlayerMovement : MonoBehaviour {
         playerCurrentPos = transform.position;
 		tr = transform;
 		playerPreviousPos = transform.position;
+
 	}
 
     // Update is called once per frame
     void Update() {
-        playerMovement();
+        if (pausePlayer == false)
+            playerMovement();
+        else
+        {
+            timer += Time.deltaTime;
+            if (timer > playerStopTime)
+                pausePlayer = false;
+        }
     }
    
     void playerMovement() {
@@ -47,7 +62,15 @@ public class PlayerMovement : MonoBehaviour {
         }
         transform.position = Vector3.MoveTowards(transform.position, playerCurrentPos, Time.deltaTime * lerpSpeed);
     }
-		
-	}
+
+    public void OnCollisionEnter(Collision collision){
+        Debug.Log("Player collision");
+        if (collision.gameObject.tag == "Enemy") { 
+            pausePlayer = true;
+            sliderMovement.UpdateSliderPosition();
+        }
+    }
+
+}
     
 
